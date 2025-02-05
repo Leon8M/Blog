@@ -4,6 +4,7 @@ import axios from 'axios';
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
   const [message, setMessage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -12,11 +13,18 @@ const CreatePost = () => {
       setMessage('Title and content are required.');
       return;
     }
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    if (image) formData.append('image', image);
     try {
-      await axios.post('http://127.0.0.1:5000/api/posts', { title, content });
+      await axios.post('http://127.0.0.1:5000/api/posts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
       setMessage('Post created successfully!');
       setTitle('');
       setContent('');
+      setImage(null);
     } catch (error) {
       setMessage('Error creating post. Try again.');
     }
@@ -36,6 +44,11 @@ const CreatePost = () => {
           <label className="block font-medium">Content:</label>
           <textarea value={content} onChange={(e) => setContent(e.target.value)} required
             className="w-full p-2 border rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        </div>
+        <div>
+          <label className="block font-medium">Image:</label>
+          <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])}
+            className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Submit</button>
       </form>

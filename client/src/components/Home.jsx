@@ -30,6 +30,7 @@ const Home = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.map(post => (
           <div key={post.id} className="border p-4 rounded-lg shadow-md">
+            {post.image_url && <img src={post.image_url} alt="Post preview" className="w-full h-40 object-cover rounded-md mb-2" />}
             <h2 className="text-xl font-semibold mb-2">
               <Link to={`/post/${post.id}`} className="text-blue-600 hover:underline">{post.title}</Link>
             </h2>

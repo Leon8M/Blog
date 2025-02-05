@@ -29,6 +29,7 @@ const Post = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+      {post.image_url && <img src={post.image_url} alt="Post image" className="w-full max-h-96 object-cover rounded-md mb-4" />}
       <p className="text-gray-700 leading-relaxed">{post.content}</p>
     </div>
   );
