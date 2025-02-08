@@ -2,15 +2,26 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from models import db, BlogPost
 import os
+from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
 
+load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 db.init_app(app)
+
+ADMIN_PIN = os.getenv("ADMIN_PIN")
+
+@app.route("/api/admin/authenticate", methods=["POST"])
+def authenticate_admin():
+    data = request.json
+    if data.get("password") == ADMIN_PIN:
+        return jsonify({"authenticated": True})
+    return jsonify({"authenticated": False}), 401
 
 @app.route('/static/uploads/<path:filename>')
 def serve_uploaded_file(filename):
