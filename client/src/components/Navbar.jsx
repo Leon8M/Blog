@@ -7,16 +7,16 @@ const Navbar = () => {
 
   useEffect(() => {
     const checkAdminStatus = () => {
-      setIsAdmin(localStorage.getItem("isAdmin") === "true");
+      setIsAdmin(localStorage.getItem('isAdmin') === 'true');
     };
-
-    // Listen for changes in localStorage
-    window.addEventListener("storage", checkAdminStatus);
-
+  
+    window.addEventListener('storage', checkAdminStatus); // ✅ Listen for changes
+  
     return () => {
-      window.removeEventListener("storage", checkAdminStatus);
+      window.removeEventListener('storage', checkAdminStatus);
     };
   }, []);
+  
 
   return (
     <nav className="bg-white border-b border-gray-200 py-4 shadow-sm">
