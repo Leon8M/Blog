@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white border-b border-gray-200 py-4 shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-6">
-        <Link to="/" className="text-2xl font-bold text-black tracking-wide">Leon's Blog</Link>
+        <Link to="/" className="text-2xl font-bold text-black tracking-wide">The Nex Journal</Link>
         <ul className="flex space-x-6 text-gray-700 text-lg">
           <li>
             <Link to="/" className="flex items-center space-x-1 hover:text-black transition">
