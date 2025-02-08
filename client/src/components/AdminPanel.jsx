@@ -25,19 +25,22 @@ const AdminPanel = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("https://blog-awpc.onrender.com/api/admin/authenticate", {
-        password,
+      const response = await axios.post('https://blog-awpc.onrender.com/api/admin/authenticate', {
+        password
       });
-
+  
       if (response.data.authenticated) {
+        localStorage.setItem('isAdmin', 'true');  // ✅ Store in localStorage
         setAuthenticated(true);
       } else {
-        alert("Incorrect password");
+        alert('Incorrect password');
       }
     } catch (error) {
-      alert("Authentication failed");
+      console.error('Error during authentication:', error);
+      alert('Error connecting to the server.');
     }
   };
+  
 
   if (!authenticated) {
     return (
