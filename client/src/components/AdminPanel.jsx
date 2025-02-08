@@ -16,7 +16,7 @@ const AdminPanel = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:5000/api/posts");
+      const response = await axios.get("https://blog-awpc.onrender.com/api/posts");
       setPosts(response.data);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -25,7 +25,7 @@ const AdminPanel = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:5000/api/admin/authenticate", {
+      const response = await axios.post("https://blog-awpc.onrender.com/api/admin/authenticate", {
         password,
       });
 

@@ -20,7 +20,7 @@ const CreatePost = () => {
     formData.append('medium_link', mediumLink);
     if (image) formData.append('image', image);
     try {
-      await axios.post('http://127.0.0.1:5000/api/posts', formData, {
+      await axios.post('https://blog-awpc.onrender.com/api/posts', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setMessage('Post created successfully!');

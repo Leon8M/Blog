@@ -11,7 +11,7 @@ const Post = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/api/posts/${id}`);
+        const response = await axios.get(`https://blog-awpc.onrender.com/api/posts/${id}`);
         setPost(response.data);
       } catch (err) {
         setError(err.message);
