@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 
 load_dotenv()
+
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
@@ -15,6 +16,10 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 db.init_app(app)
 
 ADMIN_PIN = os.getenv("ADMIN_PIN")
+print(f"🔐 Admin PIN (Loaded from env): {ADMIN_PIN}")  # Debugging
+
+if not ADMIN_PIN:
+    raise ValueError("❌ ADMIN_PIN environment variable is missing!")
 
 @app.route("/api/admin/authenticate", methods=["POST"])
 def authenticate_admin():
