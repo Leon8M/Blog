@@ -43,6 +43,11 @@ const AdminPanel = () => {
       console.error("Error during authentication:", error);
       alert("Error connecting to the server.");
     }
+    if (response.data.authenticated) {
+      localStorage.setItem("isAdmin", "true");
+      setAuthenticated(true);
+      window.location.reload();  // ✅ Fixes navbar not updating
+    }
   };
   
 
