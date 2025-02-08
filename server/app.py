@@ -55,7 +55,7 @@ def create_post():
         filename = secure_filename(image.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image.save(filepath)
-        image_url = f'http://127.0.0.1:5000/static/uploads/{filename}'
+        image_url = f'https://blog-awpc.onrender.com/static/uploads/{filename}'
     
     new_post = BlogPost(title=title, content=content, image_url=image_url, medium_link=medium_link)
     db.session.add(new_post)
