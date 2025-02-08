@@ -6,6 +6,7 @@ const CreatePost = () => {
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState(null);
+  const [mediumLink, setMediumLink] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +17,7 @@ const CreatePost = () => {
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', content);
+    formData.append('medium_link', mediumLink);
     if (image) formData.append('image', image);
     try {
       await axios.post('http://127.0.0.1:5000/api/posts', formData, {
@@ -24,6 +26,7 @@ const CreatePost = () => {
       setMessage('Post created successfully!');
       setTitle('');
       setContent('');
+      setMediumLink('');
       setImage(null);
     } catch (error) {
       setMessage('Error creating post. Try again.');
@@ -45,6 +48,11 @@ const CreatePost = () => {
           <textarea value={content} onChange={(e) => setContent(e.target.value)} required
             className="w-full p-2 border rounded-md h-32 focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
+        <div>
+        <label className="block font-medium">Medium Article Link:</label>
+        <input type="url" value={mediumLink} onChange={(e) => setMediumLink(e.target.value)}
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
+      </div>
         <div>
           <label className="block font-medium">Image:</label>
           <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])}

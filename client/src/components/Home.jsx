@@ -21,20 +21,23 @@ const Home = () => {
     fetchPosts();
   }, []);
 
-  if (loading) return <div className="text-center mt-4">Loading posts...</div>;
-  if (error) return <div className="text-center mt-4 text-red-500">Error: {error}</div>;
+  if (loading) return <div className="text-center text-gray-500 mt-6">Loading posts...</div>;
+  if (error) return <div className="text-center text-red-500 mt-6">Error: {error}</div>;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="container mx-auto py-6">
+      <h1 className="text-3xl font-bold mb-6 text-black">Latest Posts</h1>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map(post => (
-          <div key={post.id} className="border p-4 rounded-lg shadow-md">
-            {post.image_url && <img src={post.image_url} alt="Post preview" className="w-full h-40 object-cover rounded-md mb-2" />}
-            <h2 className="text-xl font-semibold mb-2">
-              <Link to={`/post/${post.id}`} className="text-blue-600 hover:underline">{post.title}</Link>
+          <div key={post.id} className="border border-gray-200 p-4 rounded-lg shadow-sm transition hover:shadow-md bg-white">
+            {post.image_url && (
+              <img src={post.image_url} alt="Post preview" className="w-full h-48 object-cover rounded-md mb-3" />
+            )}
+            <h2 className="text-xl font-semibold text-black">
+              <Link to={`/post/${post.id}`} className="hover:underline">{post.title}</Link>
             </h2>
-            <p className="text-gray-700">{post.content.substring(0, 100)}...</p>
+            <p className="text-gray-600 text-sm mt-1">Published on {new Date(post.date_posted).toLocaleDateString()}</p>
+            <p className="text-gray-700 mt-3">{post.content.substring(0, 100)}...</p>
           </div>
         ))}
       </div>

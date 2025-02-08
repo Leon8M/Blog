@@ -5,17 +5,18 @@ import CreatePost from './components/CreatePost';
 import Navbar from './components/Navbar';
 import AdminPanel from './components/AdminPanel';
 
-
 function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/post/:id" element={<Post />} />
-        <Route path="/create" element={<CreatePost />} />
-        <Route path="/admin" element={<AdminPanel />} /> {/* Admin panel route */}
-      </Routes>
+      <main className="px-6 md:px-12 lg:px-32 py-6">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/post/:id" element={<Post />} />
+          <Route path="/create" element={<CreatePost />} />
+          <Route path="/admin" element={<AdminPanel />} />
+        </Routes>
+      </main>
     </Router>
   );
 }
