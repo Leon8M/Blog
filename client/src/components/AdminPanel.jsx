@@ -44,7 +44,12 @@ const AdminPanel = () => {
   
   const handleDelete = async (id) => {
     try {
-      await axios.delete('https://blog-awpc.onrender.com/api/posts/${id}');
+      await axios.delete(`https://blog-awpc.onrender.com/api/posts/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      
       fetchPosts();
     } catch (error) {
       console.error('Error deleting post:', error);

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 from models import db, BlogPost
 import os
@@ -9,7 +9,8 @@ from flask import send_from_directory
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": "https://purple-pebble-05c780110.4.azurestaticapps.net"}},
+     supports_credentials=True, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -93,6 +94,14 @@ def delete_post(post_id):
     db.session.commit()
     
     return jsonify({'message': 'Post and associated image deleted successfully'})
+
+@app.route('/api/posts/<int:post_id>', methods=['OPTIONS'])
+def handle_preflight(post_id):
+    response = make_response()
+    response.headers["Access-Control-Allow-Origin"] = "https://purple-pebble-05c780110.4.azurestaticapps.net"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    return response
 
 
 if __name__ == '__main__':
