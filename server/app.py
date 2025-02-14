@@ -11,11 +11,10 @@ load_dotenv()
 
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "https://purple-pebble-05c780110.4.azurestaticapps.net"}},
      supports_credentials=True, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 db.init_app(app)
