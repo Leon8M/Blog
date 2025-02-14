@@ -5,9 +5,13 @@ import os
 from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
+import psycopg2 
 
 load_dotenv()
 
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "https://purple-pebble-05c780110.4.azurestaticapps.net"}},
      supports_credentials=True, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])

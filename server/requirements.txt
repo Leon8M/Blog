@@ -83,3 +83,4 @@ virtualenv==20.25.1
 Werkzeug==3.0.1
 wsproto==1.2.0
 gunicorn
+psycopg2
