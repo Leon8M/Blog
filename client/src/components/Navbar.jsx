@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaHome, FaUserShield } from "react-icons/fa";
+import { FaMedium, FaUserShield } from "react-icons/fa";
 
 const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(localStorage.getItem("isAdmin") === "true");
@@ -10,7 +10,7 @@ const Navbar = () => {
       setIsAdmin(localStorage.getItem('isAdmin') === 'true');
     };
   
-    window.addEventListener('storage', checkAdminStatus); // ✅ Listen for changes
+    window.addEventListener('storage', checkAdminStatus);
   
     return () => {
       window.removeEventListener('storage', checkAdminStatus);
@@ -24,9 +24,9 @@ const Navbar = () => {
         <Link to="/" className="text-2xl font-bold text-black tracking-wide">The Nex Journal</Link>
         <ul className="flex space-x-6 text-gray-700 text-lg">
           <li>
-            <Link to="/" className="flex items-center space-x-1 hover:text-black transition">
-              <FaHome />
-              <span>Home</span>
+            <Link to="https://medium.com/@Leonmunene" className="flex items-center space-x-1 hover:text-black transition">
+              <FaMedium />
+              <span>Medium</span>
             </Link>
           </li>
           {isAdmin && (
