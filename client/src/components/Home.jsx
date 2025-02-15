@@ -21,7 +21,7 @@ const Home = () => {
     fetchPosts();
   }, []);
 
-  if (loading) return <div className="text-center text-gray-500 mt-6">Loading posts...</div>;
+  if (loading) return <div className="text-center text-gray-500 mt-6 flex flex-col">Loading posts...<span className='text-gray-300'>May take a while because back-end hosted on render on a free plan</span></div>;
   if (error) return <div className="text-center text-red-500 mt-6">Error: {error}</div>;
 
   return (
