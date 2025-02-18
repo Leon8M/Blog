@@ -1,3 +1,4 @@
+#HEre i declare database structure and schema
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()

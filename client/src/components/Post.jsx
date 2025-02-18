@@ -1,3 +1,4 @@
+//And the post page
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -8,6 +9,7 @@ const Post = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Handle getting the posts
   useEffect(() => {
     const fetchPost = async () => {
       try {

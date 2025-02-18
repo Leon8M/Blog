@@ -1,3 +1,4 @@
+//I create Posts Here
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -8,6 +9,7 @@ const CreatePost = () => {
   const [message, setMessage] = useState(null);
   const [mediumLink, setMediumLink] = useState('');
 
+  //For submiting
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !content) {

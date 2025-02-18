@@ -1,7 +1,9 @@
+//And here is the simpleold navbar
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaMedium, FaUserShield } from "react-icons/fa";
 
+//Checking if the user is Admin to allow Admin panel to appear
 const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(localStorage.getItem("isAdmin") === "true");
 

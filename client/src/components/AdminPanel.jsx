@@ -1,3 +1,4 @@
+//Here lies the Admin Panel
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -34,7 +35,7 @@ const AdminPanel = () => {
       });
 
       if (response.data.authenticated) {
-        localStorage.setItem("isAdmin", "true"); // ✅ Save in localStorage
+        localStorage.setItem("isAdmin", "true"); // ✅ I am trying to Save into localStorage
         setAuthenticated(true);
         window.dispatchEvent(new Event("storage")); // ✅ Notify other components about the change
       } else {

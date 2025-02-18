@@ -1,3 +1,4 @@
+//This is the Home page
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -7,6 +8,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch posts when the component mounts
   useEffect(() => {
     const fetchPosts = async () => {
       try {
