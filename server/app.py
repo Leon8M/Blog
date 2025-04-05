@@ -13,7 +13,7 @@ load_dotenv()
 
 # Initialize Flask app and configure CORS for secure cross-origin requests
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "https://purple-pebble-05c780110.4.azurestaticapps.net"}},
+CORS(app, resources={r"/api/*": {"origins": "https://blog-9k5.pages.dev"}},
      supports_credentials=True, methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
 
 # Configure database URI and upload folder for images
